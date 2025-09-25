@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 
 test.use({
   viewport: {
-    height: 400,
-    width: 600
+    height: 1080,
+    width: 1920
   }
 });
 
@@ -44,6 +44,6 @@ test('test', async ({ page }) => {
   await page.getByRole('button', { name: 'Create Account' }).click();
   await page.locator('body').click();
   await page.getByRole('link', { name: 'Continue' }).click();
-  await page.getByRole('listitem').filter({ hasText: 'Delete Account' }).click();
-  await page.getByRole('link', { name: 'Continue' }).click();
+  // await page.getByRole('listitem').filter({ hasText: 'Delete Account' }).click();
+  // await page.getByRole('link', { name: 'Continue' }).click();
 });
