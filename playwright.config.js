@@ -36,10 +36,22 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'registration',
+       testMatch: 'tests/test_case_1_register_user.spec.js',
+  
       use: { ...devices['Desktop Chrome'] },
     },
 
+    {
+      name: 'user_flow_test',
+      dependencies: ['registration'],
+      testIgnore: 'tests/test_case_1_register_user.spec.js',
+      use: {
+        storageState: 'storageState.json', // reuse the saved session
+        viewport: { width: 1920, height: 1080 },
+      },
+
+    },
    /* {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
@@ -70,11 +82,12 @@ export default defineConfig({
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
   ],
-  timeout: 60*1000,
+  timeout: 30*1000,
   expect:{
-    timeout: 60000
+    timeout: 30000
   },
-  globalSetup: './global-setup.js'
+
+  // globalSetup: './global-setup.js'
   /* Run your local dev server before starting the tests */
   // webServer: {
   //   command: 'npm run start',
@@ -82,4 +95,3 @@ export default defineConfig({
   //   reuseExistingServer: !process.env.CI,
   // },
 });
-

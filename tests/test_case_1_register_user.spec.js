@@ -9,7 +9,7 @@ test.use({
 
 test('test', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
-  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.getByRole('link', { name: /Signup \/ Login/ }).click();
   await page.getByRole('textbox', { name: 'Name' }).click();
   await page.getByRole('textbox', { name: 'Name' }).fill('Utkarsh');
   await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').click();
@@ -46,4 +46,7 @@ test('test', async ({ page }) => {
   await page.getByRole('link', { name: 'Continue' }).click();
   // await page.getByRole('listitem').filter({ hasText: 'Delete Account' }).click();
   // await page.getByRole('link', { name: 'Continue' }).click();
+  // Save the session (cookies, localStorage) for later reuse
+  await page.context().storageState({ path: 'storageState.json' });
+
 });

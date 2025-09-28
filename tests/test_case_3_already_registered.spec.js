@@ -9,7 +9,7 @@ test.use({
 
 test('test', async ({ page }) => {
   await page.goto('https://automationexercise.com/');
-  await page.getByRole('link', { name: ' Signup / Login' }).click();
+  await page.getByRole('link', { name: /Signup \/ Login/ }).click();
   await page.getByRole('textbox', { name: 'Name' }).click();
   await page.getByRole('textbox', { name: 'Name' }).fill('Utkarsh Singh');
   await page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address').click();
